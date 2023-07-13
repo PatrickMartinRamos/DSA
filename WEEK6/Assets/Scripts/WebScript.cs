@@ -96,7 +96,7 @@ public class WebScript : MonoBehaviour
                     SceneManager.LoadScene(0);
                     Debug.Log(player_name);
 
- 
+
 
                 }
                 else if (responseText.Contains("wrong credentials"))
@@ -120,7 +120,7 @@ public class WebScript : MonoBehaviour
         WWWForm form = new WWWForm();
         form.AddField("loginUser", player_name);
         form.AddField("loginPass", player_password);
-      
+
 
         using (UnityWebRequest www = UnityWebRequest.Post("http://localhost/unityBackend/RegisterUser.php", form))
         {
@@ -133,16 +133,17 @@ public class WebScript : MonoBehaviour
             else
             {
                 Debug.Log(www.downloadHandler.text);
-               
+
             }
         }
     }
 
-    public IEnumerator UpdateScore(int player_score)
+    public IEnumerator UpdateScore(int player_score, string player_name)
     {
         WWWForm form = new WWWForm();
         form.AddField("playerScore", player_score);
-        
+        form.AddField("loginUser", player_name);
+
 
 
         using (UnityWebRequest www = UnityWebRequest.Post("http://localhost/unityBackend/UpdateScore.php", form))

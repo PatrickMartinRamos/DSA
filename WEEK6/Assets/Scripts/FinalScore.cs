@@ -7,6 +7,8 @@ public class FinalScore : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
 
+    //private LogInScript ls = new LogInScript();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,8 +17,8 @@ public class FinalScore : MonoBehaviour
 
         // Display the last score on the UI
         scoreText.text = "Your Score: " + lastScore.ToString();
-
-        StartCoroutine(Main.Instance.Web.UpdateScore(lastScore));
+        string playername = LogInScript.Instance.GetPlayerName();
+        StartCoroutine(Main.Instance.Web.UpdateScore(lastScore, playername));
     }
 
 
