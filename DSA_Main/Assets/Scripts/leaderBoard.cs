@@ -26,7 +26,7 @@ public class leaderBoard : MonoBehaviour
             yield return webRequest.SendWebRequest();
 
             string[] pages = uri.Split('/');
-            int page = pages.Length - 1;
+            int page = pages.Length -1;
 
             switch (webRequest.result)
             {
@@ -44,8 +44,7 @@ public class leaderBoard : MonoBehaviour
 
                     //display name
                     string playername = LogInScript.Instance.GetPlayerName();
-                    thePlayer.text = "Your Name: " + playername;
-                    
+                    thePlayer.text = "Your Name: " + playername;                
                     break;
             }
         }
