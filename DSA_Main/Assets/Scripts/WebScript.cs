@@ -1,7 +1,10 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
+using TMPro;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
@@ -9,10 +12,13 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public class WebScript : MonoBehaviour
 {
-
-
+    public TextMeshProUGUI wrongCredential;
+    public TextMeshProUGUI userDoesntExist;
     void Start()
     {
+       // wrongCredential.gameObject.SetActive(false);
+        //userDoesntExist.gameObject.SetActive(false);
+
         // A correct website page.
         //StartCoroutine(GetDate("http://localhost/unityBackend/GetDate.php"));
         //StartCoroutine(GetUser("http://localhost/unityBackend/GetUser.php"));
@@ -70,8 +76,12 @@ public class WebScript : MonoBehaviour
         }
     }
 
+    
+
     public IEnumerator Login_s(string player_name, string player_password)
     {
+      
+
         WWWForm form = new WWWForm();
         form.AddField("loginUser", player_name);
         form.AddField("loginPass", player_password);
@@ -102,11 +112,17 @@ public class WebScript : MonoBehaviour
                 else if (responseText.Contains("wrong credentials"))
                 {
                     Debug.Log("Wrong credentials");
+                    
+                    wrongCredential.gameObject.SetActive(true);
+                    StartCoroutine(HideErrorMessageAfterDelay(2));
                     // Perform actions for wrong credentials
                 }
                 else if (responseText.Contains("user does not exist"))
                 {
                     Debug.Log("User does not exist");
+
+                    userDoesntExist.gameObject.SetActive(true);
+                    StartCoroutine(HideErrorMessageAfterDelay(2));
                     // Perform actions for non-existent user
                 }
             }
@@ -161,6 +177,13 @@ public class WebScript : MonoBehaviour
 
             }
         }
+    }
+
+    private IEnumerator HideErrorMessageAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        wrongCredential.gameObject.SetActive(false);
+        userDoesntExist.gameObject.SetActive(false);
     }
 
 }
