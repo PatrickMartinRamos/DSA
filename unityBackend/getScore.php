@@ -4,22 +4,24 @@ $username = "root";
 $password = "";
 $dbname = "player_details";
 
-$playerScore = $_POST["playerScore"];
-$loginUser = $_POST["loginUser"];
-
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
+
 // Check connection
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "UPDATE player SET player_score = '". $playerScore ."' WHERE player_name = '". $loginUser ."'";
+$sql = "SELECT player_score FROM player ORDER BY player_score DESC LIMIT 1";
+$result = $conn->query($sql);
 
-if ($conn->query($sql) === TRUE) {
-  echo "Record updated successfully";
+if ($result->num_rows > 0) {
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+    echo "Score: " . $row["player_score"]."<br>";
+  }
 } else {
-  echo "Error updating record: " . $conn->error;
+  echo "0 results";
 }
 
 $conn->close();
