@@ -26,6 +26,10 @@ public class ButtonsScript : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+    public void leaderboardscene()
+    {
+        SceneManager.LoadScene(6);
+    }
     public void QuitGame()
     {
         Application.Quit();

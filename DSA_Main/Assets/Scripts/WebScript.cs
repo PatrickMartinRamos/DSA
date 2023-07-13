@@ -12,16 +12,21 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public class WebScript : MonoBehaviour
 {
+    public static WebScript instance;
     public TextMeshProUGUI wrongCredential;
     public TextMeshProUGUI userDoesntExist;
+
     void Start()
     {
-       // wrongCredential.gameObject.SetActive(false);
+        instance = this;
+
+
+
+        // wrongCredential.gameObject.SetActive(false);
         //userDoesntExist.gameObject.SetActive(false);
 
         // A correct website page.
         //StartCoroutine(GetDate("http://localhost/unityBackend/GetDate.php"));
-        //StartCoroutine(GetUser("http://localhost/unityBackend/GetUser.php"));
         //StartCoroutine(Login_s("patrick", "123123"));
     }
 
@@ -49,34 +54,7 @@ public class WebScript : MonoBehaviour
                     break;
             }
         }
-    }
-    public IEnumerator GetUser(string uri)
-    {
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
-        {
-            // Request and wait for the desired page.
-            yield return webRequest.SendWebRequest();
-
-            string[] pages = uri.Split('/');
-            int page = pages.Length - 1;
-
-            switch (webRequest.result)
-            {
-                case UnityWebRequest.Result.ConnectionError:
-                case UnityWebRequest.Result.DataProcessingError:
-                    Debug.LogError(pages[page] + ": Error: " + webRequest.error);
-                    break;
-                case UnityWebRequest.Result.ProtocolError:
-                    Debug.LogError(pages[page] + ": HTTP Error: " + webRequest.error);
-                    break;
-                case UnityWebRequest.Result.Success:
-                    Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
-                    break;
-            }
-        }
-    }
-
-    
+    }    
 
     public IEnumerator Login_s(string player_name, string player_password)
     {
@@ -128,8 +106,6 @@ public class WebScript : MonoBehaviour
             }
         }
     }
-
-
 
     public IEnumerator RegisterUser(string player_name, string player_password)
     {
