@@ -42,7 +42,7 @@ public class PlayerScript : MonoBehaviour
             Instantiate(deathEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
 
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene(5);
         }
     }
 }

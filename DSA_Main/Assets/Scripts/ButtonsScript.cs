@@ -8,27 +8,28 @@ public class ButtonsScript : MonoBehaviour
     
     public void MainMenuScene()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(2);
     } 
     public void GameScene()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(3);
     }
     public void helpscreen()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(4);
     }
     public void RegisterScene()
     {
-        SceneManager.LoadScene(5);
+        SceneManager.LoadScene(1);
     }
     public void Menu()
     {
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(0);
     }
     public void QuitGame()
     {
         Application.Quit();
+        Debug.Log("exit");
     }
 
 }

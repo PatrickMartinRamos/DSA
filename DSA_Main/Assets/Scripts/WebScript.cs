@@ -93,7 +93,7 @@ public class WebScript : MonoBehaviour
                 {
                     Debug.Log("Login successful");
                     // Perform actions for a successful login
-                    SceneManager.LoadScene(0);
+                    SceneManager.LoadScene(2);
                     Debug.Log(player_name);
 
 
