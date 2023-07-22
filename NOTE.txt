@@ -1,4 +1,3 @@
-paki paste ung unityBackend folder sa 
+paki paste ung unityBackend folder sa C:\xampp\htdocs
 
-
-C:\xampp\htdocs
+create new database on the localhost and name it player_details and import the player_details.sql 
